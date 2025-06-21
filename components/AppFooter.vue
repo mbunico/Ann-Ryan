@@ -7,8 +7,12 @@
 </template>
 
 <style scoped>
+.container {
+  color: gray;
+}
+
 .footer {
-  background: var(--primary-color);
+  background: rgba(240, 224, 197, 0.8);
   color: var(--white);
   text-align: center;
   padding: 40px 0;

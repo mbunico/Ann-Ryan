@@ -10,7 +10,7 @@
           <li><a href="#details" @click="scrollToSection">Details</a></li>
           <li><a href="#story" @click="scrollToSection">Our Story</a></li>
           <li><a href="#gallery" @click="scrollToSection">Gallery</a></li>
-          <!-- <li><a href="#rsvp" @click="scrollToSection">RSVP</a></li> -->
+          <li><a href="#qr" @click="scrollToSection">QR</a></li>
         </ul>
         <div class="mobile-menu" @click="toggleMobileMenu">
           <span/>

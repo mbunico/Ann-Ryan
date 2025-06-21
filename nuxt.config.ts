@@ -4,6 +4,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+
   app: {
     head: {
       charset: 'utf-8',
@@ -19,8 +20,11 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   components: {
     global: true,
     dirs: ['~/components']
-  }
+  },
+
+  modules: ['@nuxt/icon']
 })
