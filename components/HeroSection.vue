@@ -37,7 +37,7 @@
 
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 5rem;
+    font-size: calc(1.5rem + 2.5vw);
   }
 }
 
@@ -52,7 +52,7 @@
 
 @media (max-width: 768px) {
   .hero .date {
-    font-size: 1.5rem;
+    font-size: calc(0.8rem + 1.5vw);
   }
 }
 
@@ -66,7 +66,7 @@
 
 @media (max-width: 768px) {
   .hero .subtitle {
-    font-size: 1.2rem;
+    font-size: calc(0.8rem + 1.5vw);
   }
 }
 
