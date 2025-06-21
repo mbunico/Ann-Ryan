@@ -54,7 +54,7 @@
             </div>
             <h4>Then We Celebrate</h4>
             <p>Reception immediately follows at the same venue</p>
-            <p class="highlight">Dancing until 7:00 PM</p>
+            <p class="highlight">Until 7:00 PM</p>
           </div>
         </div>
 
