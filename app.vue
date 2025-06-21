@@ -1,5 +1,9 @@
 <template>
   <div>
+    <audio id="bg-music" autoplay loop>
+      <source src="/public/music/pachelbel.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
     <AppNavigation />
     <NuxtPage />
     <AppFooter />
@@ -15,6 +19,34 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ]
 })
+onMounted(() => {
+  const audio = document.getElementById('bg-music')
+  audio.volume = 0 // Start silent
+
+  const tryPlay = () => {
+    audio.play().then(() => {
+      console.log("Music playing")
+
+      // Fade in the volume gradually (e.g., 0 -> 1 in 5 seconds)
+      let volume = 0
+      const fadeIn = setInterval(() => {
+        if (volume < 1) {
+          volume += 0.02
+          audio.volume = Math.min(volume, 1)
+        } else {
+          clearInterval(fadeIn)
+        }
+      }, 100) // 100ms steps = smooth 5s fade
+    }).catch((err) => {
+      console.warn("Autoplay blocked:", err)
+    })
+
+    document.removeEventListener('click', tryPlay)
+  }
+
+  document.addEventListener('click', tryPlay)
+})
+
 </script>
 
 <style>
