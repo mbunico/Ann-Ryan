@@ -4,7 +4,7 @@
     <WeddingDetails />
     <LoveStory />
     <PhotoGallery />
-    <RsvpSection />
+    <!-- <RsvpSection /> -->
   </div>
 </template>
 
