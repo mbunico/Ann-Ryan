@@ -42,6 +42,8 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+
 const mobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {
@@ -50,37 +52,67 @@ const toggleMobileMenu = () => {
 
 const scrollToSection = (e) => {
   e.preventDefault()
-  const target = document.querySelector(e.target.getAttribute('href'))
-  if (target) {
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
+  
+  // Get the href attribute from the clicked link
+  const href = e.currentTarget.getAttribute('href')
+  
+  if (href) {
+    const target = document.querySelector(href)
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    } else {
+      // If target doesn't exist, scroll to top for #home
+      if (href === '#home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
+    }
   }
+  
+  // Close mobile menu after clicking
   mobileMenuOpen.value = false
 }
 
 onMounted(() => {
   // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
+  const handleClickOutside = (e) => {
     if (!e.target.closest('.nav-container')) {
       mobileMenuOpen.value = false
     }
-  })
+  }
+  document.addEventListener('click', handleClickOutside)
   
   // Add scroll effect to navbar
   const nav = document.querySelector('.nav')
-  window.addEventListener('scroll', () => {
+  const handleScroll = () => {
     if (window.scrollY > 50) {
-      nav.classList.add('scrolled')
+      nav?.classList.add('scrolled')
     } else {
-      nav.classList.remove('scrolled')
+      nav?.classList.remove('scrolled')
     }
+  }
+  window.addEventListener('scroll', handleScroll)
+  
+  // Cleanup event listeners when component is unmounted
+  onUnmounted(() => {
+    document.removeEventListener('click', handleClickOutside)
+    window.removeEventListener('scroll', handleScroll)
   })
 })
 </script>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .nav {
   position: fixed;
   top: 0;
@@ -216,6 +248,7 @@ onMounted(() => {
   padding: 8px 12px;
   border-radius: 25px;
   background: transparent;
+  cursor: pointer;
 }
 
 .nav-link:hover {

@@ -1,5 +1,5 @@
 <template>
-  <section id="rsvp" class="section red-pocket">
+  <section id="qr" class="section red-pocket">
     <div class="container">
       <h2 class="section-title fade-in">A Gift of Love</h2>
       <p class="section-subtitle fade-in">
