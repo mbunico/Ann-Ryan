@@ -2,19 +2,24 @@
   <section id="gallery" class="section">
     <div class="container">
       <h2 class="section-title fade-in">Our Moments</h2>
-      <div class="floating-gallery">
-        <div 
-          v-for="(photo, index) in photos" 
-          :key="index"
-          class="floating-photo fade-in"
-          :style="photo.style"
-          @click="openModal(index)"
-        >
-          <img :src="photo.src" :alt="photo.alt" />
+
+      <!-- Horizontal Scrollable Carousel -->
+      <div class="carousel-wrapper">
+        <div class="floating-gallery-carousel" ref="carousel">
+          <div
+            v-for="(photo, index) in photos"
+            :key="index"
+            class="floating-photo fade-in"
+            :style="photo.style"
+            @click="openModal(index)"
+          >
+            <img :src="photo.src" :alt="photo.alt" />
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Modal -->
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
@@ -39,23 +44,28 @@ const photos = ref([
   {
     src: "/images/1.jpg",
     alt: "Photo 1",
-    style: "top: 20px; left: 10%; transform: rotate(-3deg); width: 180px;"
+    style: "transform: rotate(-3deg); width: 180px;"
   },
   {
     src: "/images/3.jpg",
     alt: "Photo 2",
-    style: "top: 100px; right: 10%; transform: rotate(5deg); width: 220px;"
+    style: "transform: rotate(5deg); width: 220px;"
   },
   {
     src: "/images/2.jpg",
     alt: "Photo 3",
-    style: "top: 220px; left: 20%; transform: rotate(-2deg); width: 200px;"
+    style: "transform: rotate(-2deg); width: 200px;"
   },
   {
     src: "/images/4.jpg",
     alt: "Photo 4",
-    style: "top: 320px; right: 15%; transform: rotate(3deg); width: 190px;"
+    style: "transform: rotate(3deg); width: 190px;"
   },
+  // {
+  //   src: "/images/5.jpg",
+  //   alt: "Photo 5",
+  //   style: "transform: rotate(4deg); width: 210px;"
+  // }
 ])
 
 const showModal = ref(false)
@@ -77,8 +87,7 @@ const nextSlide = () => {
 }
 
 const prevSlide = () => {
-  currentIndex.value =
-    (currentIndex.value - 1 + photos.value.length) % photos.value.length
+  currentIndex.value = (currentIndex.value - 1 + photos.value.length) % photos.value.length
 }
 </script>
 <style scoped>
@@ -88,16 +97,22 @@ const prevSlide = () => {
   padding: 50px 0;
 }
 
-.floating-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+.carousel-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 20px 0;
   margin-top: 60px;
-  padding: 20px;
+}
+
+.floating-gallery-carousel {
+  display: inline-flex;
+  gap: 20px;
+  padding: 0 10px;
 }
 
 .floating-photo {
+  display: inline-block;
   cursor: pointer;
   transition: transform 0.4s ease, box-shadow 0.3s ease;
   z-index: 1;
@@ -113,6 +128,7 @@ const prevSlide = () => {
   height: auto;
   border-radius: 10px;
   box-shadow: var(--shadow);
+  max-height: 240px;
 }
 
 /* Modal styles */
@@ -175,16 +191,16 @@ const prevSlide = () => {
   opacity: 0;
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .floating-gallery {
-    gap: 10px;
+  .carousel-wrapper {
+    padding: 10px;
   }
   .floating-photo {
-    width: calc(50% - 10px);
+    width: 150px;
   }
   .modal-content {
     padding: 10px;
   }
 }
 </style>
-
