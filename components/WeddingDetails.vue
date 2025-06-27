@@ -205,7 +205,7 @@ const startAutoSlide = () => {
     } else {
       currentSlide.value = 0
     }
-  }, 5000)
+  }, 10000)
 }
 
 const stopAutoSlide = () => {
