@@ -46,7 +46,7 @@
                   <div class="detail-icon">
                     <Icon name="ep:location" />
                   </div>
-                  <h4>Where We'll Say "I Do"</h4>
+                  <h4 class="header">Where We'll Say "I Do"</h4>
                 </div>
                 <div class="card-content">
                   <div v-if="!showMap" class="location-info">
@@ -70,7 +70,7 @@
                   <div class="detail-icon">
                     <Icon name="mynaui:reception-bell" />
                   </div>
-                  <h4>Then We Celebrate</h4>
+                  <h4 class="header">Then We Celebrate</h4>
                 </div>
                 <div class="card-content">
                   <p>Reception immediately follows at the same venue</p>
@@ -93,7 +93,7 @@
                   <div class="detail-icon">
                     <Icon name="ph:dress-duotone" />
                   </div>
-                  <h4>Dress Code</h4>
+                  <h4 class="header">Dress Code</h4>
                 </div>
                 <div class="card-content">
                   <p>Comfortable formal attire in our dreamy palette</p>
@@ -121,7 +121,7 @@
                   <div class="detail-icon">
                     <Icon name="ph:gift" />
                   </div>
-                  <h4>Gift of Love</h4>
+                  <h4 class="header">Gift of Love</h4>
                 </div>
                 <div class="card-content">
                   <div class="gift-poem">
@@ -141,7 +141,7 @@
                   <div class="detail-icon">
                     <Icon name="ph:church" />
                   </div>
-                  <h4>Unplugged Ceremony</h4>
+                  <h4 class="header">Unplugged Ceremony</h4>
                 </div>
                 <div class="card-content">
                   <div class="ceremony-note">
@@ -330,7 +330,10 @@ onUnmounted(() => {
   margin: 20px 0;
   flex-wrap: wrap;
 }
-
+.header {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+}
 .day {
   font-family: 'Great Vibes', cursive;
   font-size: 1.8rem;
